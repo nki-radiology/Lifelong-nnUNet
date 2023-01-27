@@ -203,7 +203,8 @@ def nnUNet_extract_uncertainties(pred_dataset_name, task_id, fold_ix,
 
 if __name__ == '__main__':
     # Define the task and fold of the model that is loaded
-    task_id = 'Task862_MPM'
+    # task_id = 'Task862_MPM'
+    task_id = "071"
     fold_ix = 0
 
     # Define the dataset for which the outputs are extracted
