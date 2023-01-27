@@ -201,6 +201,43 @@ def nnUNet_extract_uncertainties(pred_dataset_name, task_id, fold_ix,
     df.to_csv(os.path.join(eval_path, 'df.csv'), sep='\t')
 
 
+if __name__ == '__main__':
+    # Define the task and fold of the model that is loaded
+    task_id = 'Task862_MPM'
+    fold_ix = 0
 
+    # Define the dataset for which the outputs are extracted
+    pred_dataset_name = 'Task862_MPM'
 
+    # Define the features that are extracted
+    feature_paths = ['conv_blocks_context.6.blocks.1.conv']
 
+    # Define the datasets for which the Gaussian distribution is estimated
+    train_ds_names = ['Task862_MPM']
+    store_ds_names = ['Task862_MPM']
+
+    # Define the dataset for which the uncertainty values are extracted
+    pred_dataset_name = 'Task862_MPM'
+
+    # Define the features that are used for the uncertainty values
+    feature_paths = ['conv_blocks_context.6.blocks.1.conv']
+
+    # Define the label for which the uncertainty values are extracted
+    label = 1
+
+    # Define the temperatures for which temperature scaling is calculated
+    temperatures = [10]
+
+    # Define the path to the checkpoint
+    checkpoint = 'nnUNetTrainerV2__nnUNetPlansv2.1'
+    # Define the model type
+    model_type = '3d_fullres'
+
+    # Extract the features
+    nnUNet_extract_features(pred_dataset_name, feature_paths, task_id, model_type, checkpoint, 0)
+
+    # Estimate the Gaussian distribution
+    nnUNet_estimate_gaussian(task_id, fold_ix, train_ds_names, store_ds_names, feature_paths)
+
+    # Extract the uncertainty values
+    nnUNet_extract_uncertainties(pred_dataset_name, task_id, fold_ix, feature_paths, label=label, temperatures=temperatures)
