@@ -319,7 +319,7 @@ def predict_cases(model, list_of_lists, output_filenames, folds, save_npz, num_t
                                                 )) # Added True, output_probabilities, part
 
             print("inference done. Now waiting for the segmentation export to finish...")
-            _ = [i.get() for i in results]
+            #_ = [i.get() for i in results]             # Commented, otherwise multiworker is not working!
             # now apply postprocessing
             # first load the postprocessing properties if they are present. Else raise a well visible warning
             if not disable_postprocessing:
@@ -335,7 +335,7 @@ def predict_cases(model, list_of_lists, output_filenames, folds, save_npz, num_t
                                                     zip(output_filenames, output_filenames,
                                                         [for_which_classes] * len(output_filenames),
                                                         [min_valid_obj_size] * len(output_filenames))))
-                    _ = [i.get() for i in results]
+                    #_ = [i.get() for i in results]     # Commented, otherwise multiworker is not working!
                 else:
                     print("WARNING! Cannot run postprocessing because the postprocessing file is missing. Make sure to run "
                         "consolidate_folds in the output folder of the model first!\nThe folder you need to run this in is "

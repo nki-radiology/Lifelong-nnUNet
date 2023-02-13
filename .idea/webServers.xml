@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="462d48a5-f35b-422e-b87d-58062231ecd6" name="rhpc-eratosthenes">
+        <fileTransfer rootFolder="/home/j.greidanus" accessType="SFTP" host="rhpc-eratosthenes" port="22" sshConfigId="8269ced8-b794-4011-a4c0-8262b44fe339" sshConfig="j.greidanus@rhpc-eratosthenes:22 agent" authAgent="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" isUseRsync="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
