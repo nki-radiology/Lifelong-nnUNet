@@ -3,25 +3,6 @@ from nnunet_ext.run.run import nnUNet_extract_uncertainties, \
     nnUNet_extract_non_softmaxed_outputs, nnUNet_extract_outputs, \
     nnUNet_extract_MCDO_outputs, nnUNet_estimate_gaussian
 
-# Variables to adjust according to your own dataset
-
-inputs_path = r'/data/groups/beets-tan/j.greidanus/nnUNet_raw_data_base/nnUNet_raw_data/NABUCCO_baseline'               # Path name of the dataset for which you want to extract uncertainties
-pred_dataset_name = "NABUCCO_baseline"                                                                                  # Path name of the dataset for which outputs are to be extracted (name of images stored in inputs_path)
-inputs_path_train_data = r'/data/groups/beets-tan/j.greidanus/nnUNet_raw_data_base/nnUNet_raw_data/Task071_BTbase_ont/imagesTr/' # Path name for the nnUNet training data (imageTr)
-pred_dataset_name_train = ['Task071_BTbase_ont']                                                                        # Path name of the train image dataset for which outputs are to be extracted (name of images stored in inputs_path_training)
-feature_paths = ['conv_blocks_context.4.blocks.1.conv']                                                                 # Define paths to the feature names
-task_id = "071"                                                                                                         # Define task ID of the nnUNet model that you want to use
-fold_ix = "0"                                                                                                           # Specify which fold instance you want to use
-model_type = '3d_fullres'                                                                                               # Define model configuration type
-checkpoint = 'model_final_checkpoint'                                                                                   # Define the checkpoint from which to restore the model state
-mahal_features = {'CB4': ['conv_blocks_context.4.blocks.1.conv']}                                                       # Define Paths to the feature names
-targets_path = r"/data/groups/beets-tan/j.greidanus/nnUNet_raw_data_base/nnUNet_raw_data/NABUCCO_baseline/labels/"      # Define the directory where the labels are stored for the input images ('pred_dataset_name')
-train_ds_names = ['Task071_BTbase_ont']                                                                                 # Folder name where the features of the training set are stored
-store_ds_names = ['NABUCCO_baseline']                                                                                   # Folder name where the features of the new data set is stored ('pred_dataset_name')
-label = 1                                                                                                               # Label for the class of interest
-nr_labels = 2                                                                                                           # Number of classes in the segmentation masks
-temperatures = [10]                                                                                                     # Define the temperatures for which temperature scaling is calculated
-patch_size=[96, 160, 160]
 
 def configure_dataset(inputs_path, pred_dataset_name, inputs_path_train_data, pred_dataset_name_train, feature_paths,
                       task_id, fold_ix, model_type, checkpoint, mahal_features, targets_path, train_ds_names, store_ds_names, label, nr_labels, temperatures, patch_size):
@@ -77,3 +58,28 @@ def configure_dataset(inputs_path, pred_dataset_name, inputs_path_train_data, pr
     nnUNet_extract_uncertainties(pred_dataset_name=pred_dataset_name, task_id=task_id, fold_ix=fold_ix,
                                  mahal_features=mahal_features, targets_path=targets_path, label=label,
                                  nr_labels=nr_labels, temperatures=temperatures, patch_size=patch_size)
+
+#%%
+# Variables to adjust according to your own dataset
+
+inputs_path = r'/data/groups/beets-tan/j.greidanus/nnUNet_raw_data_base/nnUNet_raw_data/NABUCCO_baseline'               # Path name of the dataset for which you want to extract uncertainties
+pred_dataset_name = "NABUCCO_baseline"                                                                                  # Path name of the dataset for which outputs are to be extracted (name of images stored in inputs_path)
+inputs_path_train_data = r'/data/groups/beets-tan/j.greidanus/nnUNet_raw_data_base/nnUNet_raw_data/Task071_BTbase_ont/imagesTr/' # Path name for the nnUNet training data (imageTr)
+pred_dataset_name_train = ['Task071_BTbase_ont']                                                                        # Path name of the train image dataset for which outputs are to be extracted (name of images stored in inputs_path_training)
+feature_paths = ['conv_blocks_context.4.blocks.1.conv']                                                                 # Define paths to the feature names
+task_id = "071"                                                                                                         # Define task ID of the nnUNet model that you want to use
+fold_ix = "0"                                                                                                           # Specify which fold instance you want to use
+model_type = '3d_fullres'                                                                                               # Define model configuration type
+checkpoint = 'model_final_checkpoint'                                                                                   # Define the checkpoint from which to restore the model state
+mahal_features = {'CB4': ['conv_blocks_context.4.blocks.1.conv']}                                                       # Define Paths to the feature names
+targets_path = r"/data/groups/beets-tan/j.greidanus/nnUNet_raw_data_base/nnUNet_raw_data/NABUCCO_baseline/labels/"      # Define the directory where the labels are stored for the input images ('pred_dataset_name')
+train_ds_names = ['Task071_BTbase_ont']                                                                                 # Folder name where the features of the training set are stored
+store_ds_names = ['NABUCCO_baseline']                                                                                   # Folder name where the features of the new data set is stored ('pred_dataset_name')
+label = 1                                                                                                               # Label for the class of interest
+nr_labels = 2                                                                                                           # Number of classes in the segmentation masks
+temperatures = [10]                                                                                                     # Define the temperatures for which temperature scaling is calculated
+patch_size=[96, 160, 160]
+
+configure_dataset(inputs_path, pred_dataset_name, inputs_path_train_data, pred_dataset_name_train, feature_paths,
+                  task_id, fold_ix, model_type, checkpoint, mahal_features, targets_path, train_ds_names,
+                  store_ds_names, label, nr_labels, temperatures, patch_size)
