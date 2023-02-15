@@ -27,7 +27,9 @@ This currently includes the following methods for detecting OOD samples:
 * Monte Carlo Dropout
 * Mahalanobis distance to training features
 
-For instructions on how to run these please see [here](documentation/ood_detection.md).
+Instructions for this NKI-radiology repo:
+
+The extraction of Outputs and Features can now be done by executing the `nnUNet_ext.run.run_dataset.py`. In this script all output/features are extracted within one single function. Make sure to update the variables for your specific dataset and execute the code. For the original instructions on how the specific 'extract output functions' are used, please see [here](documentation/ood_detection.md). Please make sure that regular predictions should be extracted so that the performance of the model on the new data can be assessed! 
 
 If you use the code, please cite (to be updated):
 
